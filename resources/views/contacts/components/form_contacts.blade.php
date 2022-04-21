@@ -6,6 +6,9 @@
     .buttons {
         margin-top: 25px;
     }
+    .form-email {
+        margin-top: 10px;
+    }
 </style>
 
 <form action="{{ (isset($contact) ? route('contact.update', ['id' => $contact->id]) : route('contact.store')) }}" method="POST" id="contacts-form" enctype="multipart/form-data">
@@ -25,18 +28,16 @@
                     </div>
                 @endif
             </div>
-
             <div class="form-group col-md-6">
                 <label>Contato</label>
-                <input type="text" name="contact" class="form-control" value="{{ $contact->contact ?? old('contact') }}" autocomplete="off"  maxlength="9" />
+                <input type="number" name="contact" class="form-control" value="{{ $contact->contact ?? old('contact') }}" autocomplete="off" maxlength="9" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
                 @if($errors->has('contact'))
                     <div class="alert alert-danger">
                         {{ $errors->first('contact') }} 
                     </div>
                 @endif
             </div>  
-
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-6 form-email">
                 <label>Email</label>
                 <input type="email" name="email" class="form-control" value="{{ $contact->email ?? old('email') }}" autocomplete="off"  />
                 @if($errors->has('email'))
@@ -46,14 +47,14 @@
                 @endif
             </div>            
         </div>
-
         <div class="buttons">
             <button type="submit" class="btn btn-primary btn-classic" id="btn-salvar"><i class="fas fa-archive"></i>&nbsp;Salvar</button>
             <a href="{{ route('home') }}" class="btn btn-secondary btn-exit"><i class="fas fa-undo"></i>&nbsp;Voltar</a>
         </div>
-       
     </div>
 </form>
+
+
 
 
 

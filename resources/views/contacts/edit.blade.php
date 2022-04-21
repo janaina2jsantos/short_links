@@ -1,10 +1,10 @@
 @extends('layouts.app')
-@section('title', 'ALFASOFT | Atualizar Contato')
+@section('title', 'ALFASOFT | Editar Contato')
 
 <style type="text/css">
     .alert-success {
         position: absolute !important;
-        top: 70px !important;
+        top: 75px !important;
         width: 35% !important;
         padding: 8px !important;
      }
@@ -22,12 +22,12 @@
         <div class="col-md-8">
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Library</li>
+                <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Editar Contato</li>
               </ol>
             </nav>
             <div class="card">
-                <div class="card-header">Adicionar Contato</div>
+                <div class="card-header">Editar Contato</div>
                 <div class="card-body">
                     @include('contacts.components.form_contacts', ['contact' => $contact])
                 </div>

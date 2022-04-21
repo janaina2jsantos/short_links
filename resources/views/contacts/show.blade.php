@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'ALFASOFT | Ver Detalhes Contato')
+@section('title', 'ALFASOFT | Ver Detalhes do Contato')
 
 <style type="text/css">
     .alert-success {
@@ -19,7 +19,7 @@
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Ver Contato</li>
+                <li class="breadcrumb-item active" aria-current="page">Detalhes do Contato</li>
               </ol>
             </nav>
             

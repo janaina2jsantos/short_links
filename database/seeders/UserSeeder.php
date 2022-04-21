@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
         if(DB::table('users')->get()->count() == 0){
             DB::table('users')->insert([
                 [   
-                    'name'       => 'Alfa Soft',
+                    'name'       => 'ALFASOFT',
                     'email'      => 'alfa.soft@gmail.com',
                     'password'   => Hash::make('123456'),
                     'created_at' => date('Y-m-d H:i:s'),
