@@ -20,7 +20,7 @@
                                 <th scope="col">Nome</th>
                                 <th scope="col">Contato</th>
                                 <th scope="col">Email</th>
-                                <th scope="col">Data Cadastro</th>
+                                <th scope="col">Data de Cadastro</th>
                                 <th></th>
                                 <th></th>
                                 <th></th>

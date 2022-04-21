@@ -54,7 +54,7 @@
 <script type="text/javascript">
      // Funçao para confirmar delete 
      function confirmDelete() {
-        if (confirm("Tem certeza que deseja excluir esse contato? Essa ação é irreversível!")) {
+        if (confirm("Tem certeza que deseja excluir esse Contato? Essa ação é irreversível!")) {
             return true;
         }else {
             return false;
