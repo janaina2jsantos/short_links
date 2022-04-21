@@ -3,17 +3,19 @@
 
 <style type="text/css">
     .alert-success {
+        position: absolute !important;
+        top: 70px !important;
+        width: 35% !important;
         padding: 8px !important;
-        margin-bottom: 10px !important;
-    }
+     }
 </style>
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         @if(Session::has('success'))
-            <div class="col-md-6 alert alert-success w-50 alert-dismissible alert-dismissible-02 fade show" role="alert" id="close">
-                 <strong><i class="fas fa-check-circle"></i></strong>&nbsp;{{ Session::get('success') }}
+            <div class="col-md-6 alert alert-success alert-dismissible fade show" role="alert">
+                <strong><i class="fas fa-check-circle"></i></strong>&nbsp;{{ Session::get('success') }}
             </div>
         @endif
 

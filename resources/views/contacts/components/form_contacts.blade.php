@@ -8,7 +8,7 @@
     }
 </style>
 
-<form action="{{ (isset($contact) ? route('contact.update', ['id' => $contact->id]) : route('contacts.store')) }}" method="POST" id="contacts-form" enctype="multipart/form-data">
+<form action="{{ (isset($contact) ? route('contact.update', ['id' => $contact->id]) : route('contact.store')) }}" method="POST" id="contacts-form" enctype="multipart/form-data">
     @csrf
     @if(isset($contact))
         {{ method_field('PUT') }}
@@ -28,7 +28,7 @@
 
             <div class="form-group col-md-6">
                 <label>Contato</label>
-                <input type="number" name="contact" class="form-control" value="{{ $contact->contact ?? old('contact') }}" autocomplete="off"  maxlength="9" />
+                <input type="text" name="contact" class="form-control" value="{{ $contact->contact ?? old('contact') }}" autocomplete="off"  maxlength="9" />
                 @if($errors->has('contact'))
                     <div class="alert alert-danger">
                         {{ $errors->first('contact') }} 
@@ -37,7 +37,7 @@
             </div>  
 
             <div class="form-group col-md-6">
-                <label>E-mail</label>
+                <label>Email</label>
                 <input type="email" name="email" class="form-control" value="{{ $contact->email ?? old('email') }}" autocomplete="off"  />
                 @if($errors->has('email'))
                     <div class="alert alert-danger">

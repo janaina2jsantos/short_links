@@ -25,7 +25,6 @@ class ContactRequest extends FormRequest
     {
         if ($this->method() == 'PUT') {
             $id = $this->route()->parameter('id');
-
             $email_rules   = 'required|email|unique:contacts,email,'.$id.',id';
             $contact_rules = 'required|min:9|max:9|unique:contacts,contact,'.$id.',id';
         }
@@ -45,9 +44,9 @@ class ContactRequest extends FormRequest
     {
         return [
             'name.required' => 'O campo Nome é obrigatório.',
-            'name.min' => 'O Nome deve conter no mínimo 5 caracteres.',
-            'email.required' => 'O campo E-mail é obrigatório.',
-            'email.unique' => 'Esse E-mail já está cadastrado. Por favor, informe um valor diferente.',
+            'name.min' => 'Nome deve conter no mínimo 5 caracteres.',
+            'email.required' => 'O campo Email é obrigatório.',
+            'email.unique' => 'Esse Email já está cadastrado. Por favor, informe um valor diferente.',
             'contact.required' => 'O campo Contato é obrigatório.',
             'contact.min' => 'Contato deve conter no mínimo 9 dígitos.',
             'contact.max' => 'Contato deve conter no máximo 9 dígitos.',

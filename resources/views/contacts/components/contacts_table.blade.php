@@ -1,6 +1,14 @@
+<style type="text/css">
+    .btn-success {
+        margin-bottom: 10px;
+    }
+    .white {
+        color: #fff !important;
+    }
+</style>
 
-    <div class="col-md-8">
-        <a href="{{ route('contacts.create') }}" class="btn btn-success" id="btn-adicionar">Adicionar Contato</a>
+    <div class="col-md-10">
+        <a href="{{ route('contact.create') }}" class="btn btn-success" id="btn-adicionar"><i class="fas fa-user-plus"></i> Adicionar Contato</a>
         <div class="card">
             <div class="card-header">Contatos Cadastrados</div>
             <div class="card-body">
@@ -13,6 +21,7 @@
                                 <th scope="col">Contato</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Data Cadastro</th>
+                                <th></th>
                                 <th></th>
                                 <th></th>
                             </tr>
@@ -28,17 +37,20 @@
 
                                 @auth
                                     <td>
-                                        <a href="{{ route('contact.edit', $contact->id) }}" class="btn btn-warning btn-action" title="Editar Contato"><i class="fas fa-pencil-alt"></i></a>
+                                        <a href="{{ route('contact.show', $contact->id) }}" class="btn btn-primary btn-action" title="Detalhes do Contato"><i class="fas fa-address-card white"></i></a>
                                     </td>
                                     <td>
-                                        <form action="#" method="POST" id="delete-contato">
+                                        <a href="{{ route('contact.edit', $contact->id) }}" class="btn btn-warning" title="Editar Contato"><i class="fas fa-pencil-alt white"></i></a>
+                                    </td>
+                                    <td>
+                                        <form action="{{route('contact.destroy', $contact->id)}}" method="POST" id="delete-contato">
                                             @csrf
                                             @method('DELETE') 
-                                              <a title="Deletar">
-                                              <button type="submit" class="btn btn-danger" onclick="return confirmDelete();">
-                                                <i class="fas fa-trash"></i>
-                                              </button>
-                                              </a>
+                                            <a title="Deletar Contato">
+                                                <button type="submit" class="btn btn-danger" onclick="return confirmDelete();">
+                                                    <i class="fas fa-trash white"></i>
+                                                </button>
+                                            </a>
                                         </form>
                                     </td>
                                 @endauth

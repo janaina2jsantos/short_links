@@ -14,6 +14,7 @@
         var loggedIn = {{ auth()->check() ? 'true' : 'false' }};
         if (!loggedIn) {
             alert('Você precisa fazer login para cadastrar novos contatos!'); 
+            return false; 
         }
     });
 </script>

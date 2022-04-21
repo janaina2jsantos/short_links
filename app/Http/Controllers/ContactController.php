@@ -24,7 +24,6 @@ class ContactController extends Controller
     {    
         try{
             $contact = new Contact();
-
             $contact->name = $request->name;
             $contact->contact = $request->contact;
             $contact->email = $request->email;
@@ -42,6 +41,12 @@ class ContactController extends Controller
         }
     }
 
+    public function show($id)
+    {
+        $contact = Contact::where('id', $id)->first();
+        return view('contacts.show', compact('contact'));
+    }
+
     public function edit($id)
     {
         $contact = Contact::where('id', $id)->first();
@@ -50,11 +55,8 @@ class ContactController extends Controller
 
     public function update(ContactRequest $request, $id)
     {
-        // dd($request->input('name'));
-        // try {
-
+        try {
             $contact = Contact::where('id', $id)->first();  
-
             $contact->name = $request->input('name');
             $contact->contact = $request->input('contact');
             $contact->email = $request->input('email');
@@ -65,23 +67,22 @@ class ContactController extends Controller
             Session::flash('success', ' Cadastro atualizado com sucesso!');
             return redirect()->back()->withInput();
 
-        // }catch(\Exception $e) { 
-        //     Session::flash('error', ' Não foi possível atualizar o cadastro.');
-        //     return redirect()->back()->withInput();
-        // }
+        }catch(\Exception $e) { 
+            Session::flash('error', ' Não foi possível atualizar o cadastro.');
+            return redirect()->back()->withInput();
+        }
     }
 
     public function destroy($id)
     {
         try {
-            DigitalUser::where('id_biblioteca_digital_usuario', $id)->update(['deleted_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s')]);
-            Session::flash('success', ' Cadastro excluído com sucesso!');
-            return response()->json(['success' => 'success'], 200);
+            Contact::where('id', $id)->update(['deleted_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s')]);
+            Session::flash('success', ' Contato excluído com sucesso!');
+            return redirect()->route('home');
 
         }catch (\Exception $e) {
             Session::flash('error', ' Não foi possível excluir o cadastro.');
-            return response()->json(["status" => false], 401);
+            return redirect()->route('home');
         }
     }
-
 }

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'ALFASOFT | Adicionar Contatos')
+@section('title', 'ALFASOFT | Adicionar Contato')
 
 <style type="text/css">
     .login-box {
@@ -31,7 +31,7 @@
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Library</li>
+                <li class="breadcrumb-item active" aria-current="page">Adicionar Contato</li>
               </ol>
             </nav>
             <div class="card">
