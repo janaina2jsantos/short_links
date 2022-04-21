@@ -16,6 +16,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'ContactController@index')->name('contacts.index');
 
 Auth::routes();
+
+// redirect
+Route::get('/register', function () {
+    return redirect()->route('contacts.index');
+});
+
+Route::get('/password/reset', function () {
+    return redirect()->route('contacts.index');
+});
+
 // contatos
 Route::get('/contatos/cadastrar', 'ContactController@create')->name('contact.create');
 Route::post('/contatos/cadastrar', 'ContactController@store')->name('contact.store');

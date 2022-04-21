@@ -17,7 +17,7 @@ class CreateContactsTable extends Migration
             $table->id();
             $table->string('name', 50); 
             $table->integer('contact')->unique()->unsigned();
-            $table->string('email')->unique();
+            $table->string('email', 50)->unique();
             $table->timestamps();
             $table->softDeletes();
         });
