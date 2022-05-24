@@ -2,30 +2,28 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
 
     <title>@yield('title')</title>
-
+    
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
+    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
-
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
-
-    <script type="text/javascript">
-        setTimeout(function() {
-          $(".alert-success").hide();
-        }, 2000);
-    </script>
-
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet"/>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <!-- Jquery -->
+    <script type="text/javascript" src="{{ asset('dist/js/jquery-3.5.1.min.js') }}"></script>
+    <!-- Ajax -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="{{ asset('dist/bootstrap/js/bootstrap.min.js') }}"></script>
 </head>
 <body>
     <div id="app">
@@ -40,9 +38,22 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
+                    @auth
+                        <ul class="navbar-nav me-auto">
+                            @if(\Auth()->user()->is_admin)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('clientes.index') }}">Clientes</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('links.index') }}">Links</a>
+                                </li>
+                            @else
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('links.index') }}">Links</a>
+                                </li>
+                            @endif
+                        </ul>
+                    @endauth
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
@@ -56,7 +67,7 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                    {{ Auth::user()->name }} {{ Auth::user()->is_admin ? ', admin' : '' }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -76,11 +87,11 @@
                 </div>
             </div>
         </nav>
+
         <main class="py-4">
             @yield('content')
         </main>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="crossorigin="anonymous"></script>
     @yield('scripts')
 </body>
 </html>

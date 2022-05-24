@@ -7,24 +7,8 @@ use App\Models\Contact;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
-        $contacts = Contact::where('deleted_at', '=', null)->get();   
-        return view('home', compact('contacts'));
+        return view('home');
     }
 }

@@ -13,26 +13,39 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'ContactController@index')->name('contacts.index');
+Route::get('/', 'HomeController@index')->name('home.index');
 
 Auth::routes();
 
 // redirect
 Route::get('/register', function () {
-    return redirect()->route('contacts.index');
+    return redirect()->route('home.index');
 });
 
 Route::get('/password/reset', function () {
-    return redirect()->route('contacts.index');
+    return redirect()->route('home.index');
 });
 
-// contatos
-Route::get('/contatos/cadastrar', 'ContactController@create')->name('contact.create');
-Route::post('/contatos/cadastrar', 'ContactController@store')->name('contact.store');
-Route::get('/contatos/{id}/show', 'ContactController@show')->name('contact.show');
-Route::get('/contatos/{id}/editar', 'ContactController@edit')->name('contact.edit');
-Route::put('/contatos/{id}/editar', 'ContactController@update')->name('contact.update');
-Route::delete('/contatos/{id}/deletar', 'ContactController@destroy')->name('contact.destroy');
-// home
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', function () {
+    return redirect()->route('home.index');
+});
+
+Route::middleware('auth')->group(function() {
+    Route::group(['middleware' => 'is.admin'], function() {
+        // clientes
+        Route::get('/clientes', 'ClienteController@index')->name('clientes.index');
+        Route::post('/clientes/cadastrar', 'ClienteController@store')->name('clientes.store');
+        Route::get('/clientes/editar/{id}', 'ClienteController@edit')->name('clientes.edit');
+        Route::put('/clientes/editar/{id}', 'ClienteController@update')->name('clientes.update');
+        Route::delete('/clientes/deletar/{id}', 'ClienteController@destroy')->name('clientes.destroy');
+    });
+    // links
+    Route::get('/links', 'LinkController@index')->name('links.index');
+    Route::post('/links/cadastrar', 'LinkController@store')->name('links.store');
+    Route::get('/links/editar/{id}', 'LinkController@edit')->name('links.edit');
+    Route::put('/links/editar/{id}', 'LinkController@update')->name('links.update');
+    Route::delete('/links/deletar/{id}', 'LinkController@destroy')->name('links.destroy');
+    Route::put('/links/counter/{id}', 'LinkController@counter')->name('links.counter');
+
+});
 

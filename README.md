@@ -9,11 +9,15 @@
 
 ## Como rodar o projeto
 
-- Faça a conexão com o banco.
+- Crie o banco e faça a conexão.
 - Rode as migrations.
 - Rode as seeds.
-- Navegue pelo sistema.
-- Use o usuário criado pela seed para fazer login e navegar pelas áreas restritas do sistema.
+- Use o usuário admin criado pela seed para fazer login e navegar pelo sistema.
+- O usuário admim pode criar novos clientes.
+- Ao criar novos clientes a senha padrão do cliente é 123456.
+- As rotas que somente o usuário admin pode acessar são protegidas por middleware, evitando que o cliente acesse.
+- Somente o cliente pode criar e editar links.
+- O usuário admin pode ver a listagem de links, mas não pode criar nem editar.
 
 ## License
 
